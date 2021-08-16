@@ -1,20 +1,13 @@
 const PRODUCTS_URL = "https://5d76bf96515d1a0014085cf9.mockapi.io/product";
 const clothing = document.querySelector("#clothing-content");
 
-{
-  /* <div class="card" style="width: 18rem;">
-  <img src="..." class="card-img-top" alt="...">
-  <div class="card-body">
-    <h5 class="card-title">Card title</h5>
-    <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-    <a href="#" class="btn btn-primary">Go somewhere</a>
-  </div>
-</div> */
-}
+const cart = document.getElementById("cart");
+const cartItems = JSON.parse(window.localStorage.getItem("cart")) || [];
+cart.textContent = cartItems.length;
 fetch(PRODUCTS_URL)
   .then((res) => res.json())
   .then((res) => {
-    res.slice(0, 4).map((item, index) => {
+    res.slice(0, 4).map((item, id) => {
       const card = document.createElement("div");
       card.className = "card m-2";
       card.style.width = "18rem";
@@ -43,7 +36,7 @@ fetch(PRODUCTS_URL)
       const cardBtn = document.createElement("a");
       cardBtn.className = "btn btn-primary";
       cardBtn.textContent = "More Details";
-      cardBtn.href = `/product?id=1`;
+      cardBtn.href = `/product.html?id=${id}`;
       cardBody.append(cardBtn);
 
       card.append(cardBody);
