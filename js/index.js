@@ -4,7 +4,9 @@ const clothing = document.querySelector("#clothing-content");
 const cart = document.getElementById("cart");
 const cartItems = JSON.parse(window.localStorage.getItem("cart")) || [];
 cart.textContent = cartItems.length;
+// const searchValue = document.querySelector("#search").value;
 
+let originalProducts = []; // 10 products
 fetch(PRODUCTS_URL)
   .then((res) => res.json())
   .then((res) => {
@@ -46,10 +48,6 @@ fetch(PRODUCTS_URL)
       clothing.append(card);
     });
   });
-
-const searchValue = document.querySelector("#search").value;
-
-let originalProducts = []; // 10 products
 
 products =
   searchValue &&
